@@ -1,0 +1,170 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark background color */
+    color: #e0e0e0; /* Light gray for general text */
+    position: relative;
+    overflow: hidden; /* Prevent body from scrolling */
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh; /* Full height of viewport */
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;  /* Off-screen initially */
+    width: 250px;
+    height: 100vh; /* Full height */
+    background-color: rgba(22, 33, 62, 0.9); /* Dark blue with transparency */
+    padding: 30px 20px;
+    transition: all 0.4s ease;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.5); /* Deeper shadow */
+    z-index: 999;
+}
+
+.sidebar.open {
+    left: 0; /* Slide in */
+}
+
+.toggle-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(255, 107, 107, 0.9); /* Soft red with transparency */
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1000;
+    transition: background-color 0.3s;
+}
+
+.toggle-btn:hover {
+    background-color: rgba(255, 70, 70, 0.9); /* Darker on hover */
+}
+
+.sidebar nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 50px;
+}
+
+.sidebar nav ul li {
+    margin: 25px 0;
+}
+
+.sidebar nav ul li a {
+    color: #FFA500; /* Orange link color */
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 10px;
+    display: block;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: rgba(255, 107, 107, 0.9);
+    color: #fff;
+    border-radius: 8px;
+}
+
+/* Main Content */
+main {
+    flex-grow: 1;
+    padding: 40px;
+    transition: margin-left 0.4s ease;
+    margin-left: 10px; /* Small left margin for the main content */
+    background-color: rgba(30, 30, 30, 0.8); /* Slightly transparent main background */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); /* Shadow around main content */
+    border-radius: 10px; /* Rounded corners for the main content */
+    height: calc(100vh - 40px); /* Subtract padding from full height */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.sidebar.open ~ main {
+    margin-left: 250px;  /* Push the content when sidebar is open */
+}
+
+h1 {
+    font-size: 3em;
+    text-align: left;
+    padding-bottom: 10px; /* Padding for spacing */
+    color: #FFA500; /* Orange for main heading */
+}
+
+section {
+    margin-bottom: 60px;
+}
+
+h3 {
+    font-size: 2.2em;
+    color: #FFA500; /* Orange for section headings */
+    margin-bottom: 20px;
+}
+
+p {
+    color: #e0e0e0; /* Light gray for paragraph text */
+}
+
+a {
+    color: #FFA500; /* Orange for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Background Shadow Effect */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 20%, transparent 60%); /* Darker radial gradient */
+    filter: blur(50px);
+    z-index: -1;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        left: -100%;
+    }
+    
+    .sidebar.open {
+        left: 0; /* Slide in on mobile */
+    }
+
+    main {
+        margin-left: 0; /* No margin on mobile */
+    }
+
+    .sidebar.open ~ main {
+        margin-left: 0; /* No margin when sidebar is open on mobile */
+    }
+}
+
+/* Bookmark Specific Styles */
+.bookmark {
+    margin: 20px 0;
+}
+
+.bookmark a {
+    color: #ff8c00; /* Bookmark link color */
+    text-decoration: none;
+}
+
+.bookmark a:hover {
+    text-decoration: underline;
+}
